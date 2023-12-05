@@ -1,4 +1,5 @@
 Scales:
+- [ ] Rename le projet et chg le git, faire un readme
 - [ ] Faire une fonction qui genere des scales
 - [ ] Remplir bibliotheque de scales
 - [ ] Rework pour que scale prenne en compte les parametre comme: getScale('A', 'minor', 'pentatonic');
