@@ -18,8 +18,9 @@ function getScalesNames() {
 }
 
 function getRandomItem() {
-    var scaleName = scales[Math.floor(Math.random() * scales.length)];
-    return scales[scaleName];
+    const scalesNames = getScalesNames();
+    const rdmScaleName = scalesNames[Math.floor(Math.random() * scalesNames.length)];
+    return scales[rdmScaleName];
 }
 
-console.log(getRandomItem());
+// console.log(getRandomItem());
