@@ -1,5 +1,5 @@
 const scales = {
-    pentatonicMinor: [
+    ApentatonicMinor: [
         [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
         [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
         [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
@@ -8,6 +8,10 @@ const scales = {
         [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
     ],
 };
+
+function getScales() {
+    return scales;
+}
 
 function getScale(scaleName) {
     return scales[scaleName];

@@ -1,5 +1,9 @@
 Scales:
 - [ ] Faire une fonction qui genere des scales
 - [ ] Remplir bibliotheque de scales
+- [ ] Rework pour que scale prenne en compte les parametre comme: getScale('A', 'minor', 'pentatonic');
 - [ ] Faire affichage d'une tablature alétoire + de la scale concerné
 - [ ] Refacto l'afichage avec des tableaux
+- [ ] Ajouter la création de patern, les slides, hammer-on, ... 
+- [ ] Prendre en compte d'autres tune (drop D, ...)
+ 

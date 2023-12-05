@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script type="text/javascript" src="scales.js"></script>
+  <script type="text/javascript" src="generate-tab.js"></script>
 </head>
 
 <body>
@@ -15,15 +16,8 @@
 </html>
 
 <script>
-  // A MINOR SCALE
-  const scale = [
-    [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-    [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-    [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
-    [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
-    [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
-    [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-  ];
+
+  const scale =  getScale('ApentatonicMinor');
 
   const strings = ['E', 'A', 'D', 'G', 'B', 'e'];
 
