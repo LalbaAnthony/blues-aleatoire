@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="scales.js"></script>
 </head>
 
 <body>
@@ -14,71 +15,71 @@
 </html>
 
 <script>
-    // A MINOR SCALE
-    const scale = [
-        [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-        [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-        [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
-        [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
-        [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
-        [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-    ];
+  // A MINOR SCALE
+  const scale = [
+    [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+    [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
+    [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
+    [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
+    [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+  ];
 
-    const strings = ['E', 'A', 'D', 'G', 'B', 'e'];
+  const strings = ['E', 'A', 'D', 'G', 'B', 'e'];
 
-    // Fill a blank result array
-    const result = [];
-    for (let i = 0; i < strings.length; i++) {
-        const oneStringArray = [strings.slice().reverse()[i], '|', ...Array(150).fill('-')];
-        result.push(oneStringArray);
-    }
+  // Fill a blank result array
+  const result = [];
+  for (let i = 0; i < strings.length; i++) {
+    const oneStringArray = [strings.slice().reverse()[i], '|', ...Array(150).fill('-')];
+    result.push(oneStringArray);
+  }
 
-    // Function to pick a random note with a maximum distance of two
-    function pickARandomNote(posXLast, posYLast, scale) {
-        const positions = [];
+  // Function to pick a random note with a maximum distance of two
+  function pickARandomNote(posXLast, posYLast, scale) {
+    const positions = [];
 
-        // Loop through the scale array and record positions of "1" respecting the distance constraint
-        for (let i = 0; i < scale.length; i++) {
-            for (let j = 0; j < scale[i].length; j++) {
-                if (scale[i][j] === 1 && Math.abs(i - posYLast) <= 2 && Math.abs(j - posXLast) <= 2) {
-                    positions.push([i, j]);
-                }
-            }
+    // Loop through the scale array and record positions of "1" respecting the distance constraint
+    for (let i = 0; i < scale.length; i++) {
+      for (let j = 0; j < scale[i].length; j++) {
+        if (scale[i][j] === 1 && Math.abs(i - posYLast) <= 2 && Math.abs(j - posXLast) <= 2) {
+          positions.push([i, j]);
         }
-
-        // Randomly select a position from the recorded positions
-        const randomIndex = Math.floor(Math.random() * positions.length);
-        const randomNotePosition = positions[randomIndex];
-
-        return randomNotePosition;
+      }
     }
 
-    // Generate start notes
-    let posY = Math.floor(Math.random() * 6);
-    let posX = Math.floor(Math.random() * scale[0].length);
+    // Randomly select a position from the recorded positions
+    const randomIndex = Math.floor(Math.random() * positions.length);
+    const randomNotePosition = positions[randomIndex];
 
-    // Generate tab
-    // for the length of a string array of the result array
-    for (let noteIndex = 3; noteIndex < result[0].length; noteIndex += 6) {
-        // Generate a new note
-        const newNote = pickARandomNote(posX, posY, scale);
+    return randomNotePosition;
+  }
 
-        // Get the position
-        posY = newNote[0];
-        posX = newNote[1];
+  // Generate start notes
+  let posY = Math.floor(Math.random() * 6);
+  let posX = Math.floor(Math.random() * scale[0].length);
 
-        // Write it
-        result[posY][noteIndex] = posX;
-    }
+  // Generate tab
+  // for the length of a string array of the result array
+  for (let noteIndex = 3; noteIndex < result[0].length; noteIndex += 6) {
+    // Generate a new note
+    const newNote = pickARandomNote(posX, posY, scale);
 
-    // Display
-    document.write("<pre>");
-    result.forEach((line) => {
-        line.forEach((note) => {
-            document.write(note);
-        });
-        document.write("<br>");
+    // Get the position
+    posY = newNote[0];
+    posX = newNote[1];
+
+    // Write it
+    result[posY][noteIndex] = posX;
+  }
+
+  // Display
+  document.write("<pre>");
+  result.forEach((line) => {
+    line.forEach((note) => {
+      document.write(note);
     });
-    document.write("</pre>");
+    document.write("<br>");
+  });
+  document.write("</pre>");
 
 </script>

@@ -1,0 +1,5 @@
+Scales:
+- [ ] Faire une fonction qui genere des scales
+- [ ] Remplir bibliotheque de scales
+- [ ] Faire affichage d'une tablature alétoire + de la scale concerné
+- [ ] Refacto l'afichage avec des tableaux
