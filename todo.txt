@@ -1,4 +1,5 @@
 Scales:
+- [ ] Faire multiplier les scales par deux pour aller plus haut sur le manche jusqua 22 fret
 - [ ] Rename le projet et chg le git, faire un readme
 - [ ] Faire une fonction qui genere des scales
 - [ ] Remplir bibliotheque de scales
@@ -7,4 +8,4 @@ Scales:
 - [ ] Refacto l'afichage avec des tableaux
 - [ ] Ajouter la création de patern, les slides, hammer-on, ... 
 - [ ] Prendre en compte d'autres tune (drop D, ...)
- 
+- [ ] Faire une section riff et une section solo
