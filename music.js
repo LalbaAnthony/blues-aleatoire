@@ -2,7 +2,7 @@ class Scale {
     constructor(rootNote = 'C', scaleQuality = 'major') {
         this.rootNote = rootNote;
         this.scaleQuality = scaleQuality;
-        this.scaleGride = [
+        this.basicScaleGride = [
             [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
             [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
             [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
@@ -10,6 +10,9 @@ class Scale {
             [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
             [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
         ];
+        this.fullScaleGride = this.basicScaleGride.forEach((s) => {
+            s.push(...s);
+        });
     }
 
     getRootNote() {
@@ -20,12 +23,16 @@ class Scale {
         return this.scaleQuality;
     }
 
-    getScaleGride() {
-        return this.scaleGride;
+    getBasicScaleGride() {
+        return this.basicScaleGride;
+    }
+
+    getFullScaleGride() {
+        return this.fullScaleGride;
     }
 
     isNoteInScale(posX, posY) {
-        const noteValue = this.scaleGride[posY][posX];
+        const noteValue = this.fullScaleGride[posY][posX];
         if (noteValue === 1) return true;
         return false;
     }
@@ -34,9 +41,9 @@ class Scale {
         return `${this.rootNote} ${this.scaleQuality}`;
     }
 
-    printScale() {
+    printFullScaleGrid() {
         document.write("<pre>");
-        this.scaleGride.forEach((line) => {
+        this.fullScaleGride.forEach((line) => {
             line.forEach((note) => {
                 if (note === 1) {
                     document.write('X ');
@@ -54,7 +61,7 @@ class Music {
     constructor(rootNote, scaleQuality) {
         this.stringTuning = ['E', 'A', 'D', 'G', 'B', 'e'];
         this.scale = new Scale(rootNote, scaleQuality);
-        this.scaleGrid = this.scale.getScaleGride();
+        this.scaleGrid = this.scale.getFullScaleGride();
         this.tab = this.returnBlankTab();
     }
 
