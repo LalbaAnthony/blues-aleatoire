@@ -27,9 +27,9 @@ const scales = {
 };
 
 function getScale(rootTone = 'A', scaleQuality = 'minor', scale = 'pentatonic') {
-    rootTone = rootTone.toUpperCase().trim();
-    scaleQuality = (scaleQuality.charAt(0).toUpperCase() + scaleQuality.slice(1)).trim();
-    scale = (scale.charAt(0).toUpperCase() + scale.slice(1)).trim();
+    rootTone = rootTone.toUpperCase();
+    scaleQuality = scaleQuality.charAt(0).toUpperCase() + scaleQuality.slice(1);
+    scale = scale.charAt(0).toUpperCase() + scale.slice(1);
     const fullScaleName = `${rootTone}${scaleQuality}${scale}`;
     return scales[fullScaleName];
 }

@@ -17,16 +17,20 @@
 
 <script>
 
-  const scale =  getScale();
+  const scale = getScale();
 
   const strings = ['E', 'A', 'D', 'G', 'B', 'e'];
 
-  // Fill a blank result array
-  const result = [];
-  for (let i = 0; i < strings.length; i++) {
-    const oneStringArray = [strings.slice().reverse()[i], '|', ...Array(150).fill('-')];
-    result.push(oneStringArray);
+  // Fill a blank tab array
+  function getBlankTab() {
+    const tab = [];
+    for (let i = 0; i < strings.length; i++) {
+      const oneStringArray = [strings.slice().reverse()[i], '|', ...Array(150).fill('-')];
+      tab.push(oneStringArray);
+    }
+    return tab;
   }
+  const tab = getBlankTab();
 
   // Function to pick a random note with a maximum distance of two
   function pickARandomNote(posXLast, posYLast, scale) {
@@ -53,8 +57,8 @@
   let posX = Math.floor(Math.random() * scale[0].length);
 
   // Generate tab
-  // for the length of a string array of the result array
-  for (let noteIndex = 3; noteIndex < result[0].length; noteIndex += 6) {
+  // for the length of a string array of the tab array
+  for (let noteIndex = 3; noteIndex < tab[0].length; noteIndex += 6) {
     // Generate a new note
     const newNote = pickARandomNote(posX, posY, scale);
 
@@ -63,12 +67,12 @@
     posX = newNote[1];
 
     // Write it
-    result[posY][noteIndex] = posX;
+    tab[posY][noteIndex] = posX;
   }
 
   // Display
   document.write("<pre>");
-  result.forEach((line) => {
+  tab.forEach((line) => {
     line.forEach((note) => {
       document.write(note);
     });

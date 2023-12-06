@@ -6,6 +6,7 @@ Scales:
 - [ ] Rework pour que scale prenne en compte les parametre comme: getScale('A', 'minor', 'pentatonic');
 - [ ] Faire affichage d'une tablature alétoire + de la scale concerné
 - [ ] Refacto l'afichage avec des tableaux
-- [ ] Ajouter la création de patern, les slides, hammer-on, ... 
+- [ ] Ajouter la création de patern 
+- [ ] Ajouter les slides, hammer-on, ... 
 - [ ] Prendre en compte d'autres tune (drop D, ...)
 - [ ] Faire une section riff et une section solo
