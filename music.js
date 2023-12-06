@@ -1,42 +1,141 @@
-// Définition de la classe Personne
-class Music {
-    constructor(rootNote, scaleQuality) {
-        this.scale = new Scale(rootNote, scaleQuality);
+class Scale {
+    constructor(rootNote = 'C', scaleQuality = 'major') {
+        this.rootNote = rootNote;
+        this.scaleQuality = scaleQuality;
+        this.scaleGride = [
+            [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+            [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+            [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
+            [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
+            [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
+            [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+        ];
     }
 
-    presenter() {
-        console.log(`Je m'appelle ${this.nom} et j'ai ${this.age} ans.`);
+    getRootNote() {
+        return this.rootNote;
     }
 
-    souhaiterAnniversaire() {
-        console.log(`Joyeux anniversaire, ${this.nom} !`);
+    getScaleQuality() {
+        return this.scaleQuality;
+    }
+
+    getScaleGride() {
+        return this.scaleGride;
+    }
+
+    isNoteInScale(posX, posY) {
+        const noteValue = this.scaleGride[posY][posX];
+        if (noteValue === 1) return true;
+        return false;
+    }
+
+    getScaleNiceName() {
+        return `${this.rootNote} ${this.scaleQuality}`;
+    }
+
+    printScale() {
+        document.write("<pre>");
+        this.scaleGride.forEach((line) => {
+            line.forEach((note) => {
+                if (note === 1) {
+                    document.write('X ');
+                } else {
+                    document.write('- ');
+                }
+            });
+            document.write("<br>");
+        });
+        document.write("</pre>");
     }
 }
 
-class Scale {
+class Music {
     constructor(rootNote, scaleQuality) {
-        this.rootNote = rootNote;
-        this.scaleQuality = scaleQuality;
+        this.stringTuning = ['E', 'A', 'D', 'G', 'B', 'e'];
+        this.scale = new Scale(rootNote, scaleQuality);
+        this.scaleGrid = this.scale.getScaleGride();
+        this.tab = this.returnBlankTab();
+    }
+
+    getStringTuning() {
+        return this.stringTuning;
     }
 
     getScale() {
-        return scales[`${this.rootNote}${this.scaleQuality}`];
+        return this.scale;
     }
 
-    getScaleName() {
-        return `${this.rootNote}${this.scaleQuality}`;
+    getScaleGrid() {
+        return this.scaleGrid;
+    }
+
+    getTab() {
+        return this.tab;
+    }
+
+    returnBlankTab(length = 150) {
+        const tab = [];
+        for (let i = 0; i < this.stringTuning.length; i++) {
+            const oneStringArray = [this.stringTuning.slice().reverse()[i], '|', ...Array(length).fill('-')];
+            tab.push(oneStringArray);
+        }
+        return tab;
+    }
+
+    printTab() {
+        document.write("<pre>");
+        this.tab.forEach((line) => {
+            line.forEach((note) => {
+                document.write(note);
+            });
+            document.write("<br>");
+        });
+        document.write("</pre>");
     }
 }
 
+class Solo extends Music {
+    pickARandomNote(posXLast, posYLast) {
+        const possiblesNotes = [];
 
+        // Loop through the scale array and fill possiblesNotes array
+        for (let i = 0; i < this.scaleGrid.length; i++) {
+            for (let j = 0; j < this.scaleGrid[i].length; j++) {
+                if (this.scaleGrid[i][j] === 1 && Math.abs(i - posYLast) <= 2 && Math.abs(j - posXLast) <= 2) {
+                    possiblesNotes.push([i, j]);
+                }
+            }
+        }
 
+        // Randomly select a position from the possiblesNotes
+        const randomIndex = Math.floor(Math.random() * possiblesNotes.length);
+        const randomNotePosition = possiblesNotes[randomIndex];
 
+        return randomNotePosition;
+    }
 
+    generateTab() {
+        // Generate start notes
+        let posY = Math.floor(Math.random() * 6);
+        let posX = Math.floor(Math.random() * this.scaleGrid[0].length);
 
+        // Generate tab
+        // for the length of a string array of the tab array
+        for (let noteIndex = 3; noteIndex < this.tab[0].length; noteIndex += 6) {
+            // Generate a new note
+            const newNote = this.pickARandomNote(posX, posY);
+
+            // Get the position
+            posY = newNote[0];
+            posX = newNote[1];
+
+            // Write it
+            this.tab[posY][noteIndex] = posX;
+        }
+    }
+}
 
 class Riff extends Music {
-
-}
-class Solo extends Music {
 
 }
