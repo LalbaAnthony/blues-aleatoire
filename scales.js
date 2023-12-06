@@ -26,6 +26,12 @@ const scales = {
     ],
 };
 
+function isNoteInScale(posX, posY) {
+    const noteValue = scale[posY][posX];
+    if (noteValue === 1) return true;
+    return false;
+}
+
 function getScale(rootTone = 'A', scaleQuality = 'minor', scale = 'pentatonic') {
     rootTone = rootTone.toUpperCase();
     scaleQuality = scaleQuality.charAt(0).toUpperCase() + scaleQuality.slice(1);
