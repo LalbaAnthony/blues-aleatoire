@@ -1,8 +1,8 @@
 class Scale {
-    constructor(rootNote = 'C', scaleQuality = 'major') {
+    constructor(rootNote = 'C', mode = 'major') {
         this.rootNote = rootNote;
-        this.scaleQuality = scaleQuality;
-        this.basicScaleGride = [
+        this.mode = mode;
+        this.basicAPentatonicScale = [
             [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
             [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
             [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
@@ -10,40 +10,46 @@ class Scale {
             [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
             [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
         ];
-        this.fullScaleGride = this.basicScaleGride.forEach((s) => {
-            s.push(...s);
-        });
+        this.fullAPentatonicScale = this.basicAPentatonicScale.map((s) => [...s, ...s.slice(0, -1)]); // concat scale twice + remove last note cuz strat at fret 0
+        this.allFullPentatonicScale = {
+            // ...
+        }
     }
 
     getRootNote() {
         return this.rootNote;
     }
 
-    getScaleQuality() {
-        return this.scaleQuality;
+    getMode() {
+        return this.mode;
     }
 
-    getBasicScaleGride() {
-        return this.basicScaleGride;
+    getBasicAPentatonicScale() {
+        return this.basicAPentatonicScale;
     }
 
-    getFullScaleGride() {
-        return this.fullScaleGride;
+    getFullAPentatonicScale() {
+        return this.fullAPentatonicScale;
     }
 
-    isNoteInScale(posX, posY) {
-        const noteValue = this.fullScaleGride[posY][posX];
+    getAllFullPentatonicScale() {
+        return this.allFullPentatonicScale;
+    }
+
+    isNoteInScale(scale, posX, posY) {
+        const noteValue = scale[posY][posX];
         if (noteValue === 1) return true;
         return false;
     }
 
     getScaleNiceName() {
-        return `${this.rootNote} ${this.scaleQuality}`;
+        return `${this.rootNote} ${this.mode}`;
     }
 
-    printFullScaleGrid() {
+    printFullScale() {
         document.write("<pre>");
-        this.fullScaleGride.forEach((line) => {
+        document.write('0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2<br>');
+        this.fullAPentatonicScale.forEach((line) => {
             line.forEach((note) => {
                 if (note === 1) {
                     document.write('X ');
@@ -58,10 +64,10 @@ class Scale {
 }
 
 class Music {
-    constructor(rootNote, scaleQuality) {
+    constructor(rootNote, mode) {
         this.stringTuning = ['E', 'A', 'D', 'G', 'B', 'e'];
-        this.scale = new Scale(rootNote, scaleQuality);
-        this.scaleGrid = this.scale.getFullScaleGride();
+        this.scaleObj = new Scale(rootNote, mode);
+        this.scale = this.scaleObj.getFullAPentatonicScale();
         this.tab = this.returnBlankTab();
     }
 
@@ -69,12 +75,12 @@ class Music {
         return this.stringTuning;
     }
 
-    getScale() {
-        return this.scale;
+    getScaleObj() {
+        return this.scaleObj;
     }
 
-    getScaleGrid() {
-        return this.scaleGrid;
+    getScale() {
+        return this.scale;
     }
 
     getTab() {
@@ -103,14 +109,14 @@ class Music {
 }
 
 class Solo extends Music {
-    pickARandomNote(posXLast, posYLast) {
+    pickANote(posXLast, posYLast, depth = 2) {
         const possiblesNotes = [];
 
         // Loop through the scale array and fill possiblesNotes array
-        for (let i = 0; i < this.scaleGrid.length; i++) {
-            for (let j = 0; j < this.scaleGrid[i].length; j++) {
-                if (this.scaleGrid[i][j] === 1 && Math.abs(i - posYLast) <= 2 && Math.abs(j - posXLast) <= 2) {
-                    possiblesNotes.push([i, j]);
+        for (let i = 0; i < this.scale.length; i++) {
+            for (let j = 0; j < this.scale[i].length; j++) {
+                if (this.scale[i][j] === 1 && Math.abs(i - posYLast) <= depth && Math.abs(j - posXLast) <= depth) {
+                    possiblesNotes.push([j, i]);
                 }
             }
         }
@@ -123,19 +129,18 @@ class Solo extends Music {
     }
 
     generateTab() {
-        // Generate start notes
+        // Generate start note
         let posY = Math.floor(Math.random() * 6);
-        let posX = Math.floor(Math.random() * this.scaleGrid[0].length);
+        let posX = Math.floor(Math.random() * this.scale[0].length);
 
-        // Generate tab
         // for the length of a string array of the tab array
         for (let noteIndex = 3; noteIndex < this.tab[0].length; noteIndex += 6) {
             // Generate a new note
-            const newNote = this.pickARandomNote(posX, posY);
+            const newNote = this.pickANote(posX, posY);
 
             // Get the position
-            posY = newNote[0];
-            posX = newNote[1];
+            posX = newNote[0];
+            posY = newNote[1];
 
             // Write it
             this.tab[posY][noteIndex] = posX;

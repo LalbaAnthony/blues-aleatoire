@@ -1,8 +1,9 @@
 Scales:
-- [ ] Faire multiplier les scales par deux pour aller plus haut sur le manche jusqua 22 fret
-- [ ] Rename le projet et chg le git, faire un readme
+- [X] Rename le projet et chg le git, faire un readme
+- [X] Faire multiplier les scales par deux pour aller plus haut sur le manche jusqua 22 fret
 - [ ] Faire une fonction qui genere des scales
 - [ ] Remplir bibliotheque de scales
+- [ ] Rework comment print les tabs/scales
 - [ ] Rework pour que scale prenne en compte les parametre comme: getScale('A', 'minor', 'pentatonic');
 - [ ] Faire affichage d'une tablature alétoire + de la scale concerné
 - [ ] Refacto l'afichage avec des tableaux
