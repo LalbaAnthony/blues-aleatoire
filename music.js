@@ -11,15 +11,29 @@ class Scale {
             [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
         ];
         this.fullAPentatonicScale = this.basicAPentatonicScale.map((s) => [...s, ...s.slice(0, -1)]); // concat scale twice + remove last note cuz strat at fret 0
-        this.scale = [
-            [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-            [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-            [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
-            [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
-            [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
-            [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-        ]
-        // this.scale = this.calculateScale();
+        this.scaleNameToShiftRequirement = {
+            'A': 0,
+            'A#': 1,
+            'B': 2,
+            'C': 3,
+            'C#': 4,
+            'D': 5,
+            'D#': 6,
+            'E': -5,
+            'F': -4,
+            'F#': -3,
+            'G': -2,
+            'G#': -1,
+        };
+        // this.scale = [
+        //     [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+        //     [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+        //     [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
+        //     [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
+        //     [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
+        //     [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+        // ];
+        this.scale = this.shiftScale();
     }
 
     getRootNote() {
@@ -50,6 +64,24 @@ class Scale {
 
     getScaleNiceName() {
         return `${this.rootNote} ${this.mode}`;
+    }
+
+    shiftScale(originalScale, shift) {
+        const newScale = [];
+
+        for (let i = 0; i < originalScale.length; i++) {
+            const subArray = originalScale[i];
+            const shiftedSubArray = [];
+
+            for (let j = 0; j < subArray.length; j++) {
+                const newIndex = (j + shift + subArray.length) % subArray.length;
+                shiftedSubArray[newIndex] = subArray[j];
+            }
+
+            newScale.push(shiftedSubArray);
+        }
+
+        return newScale;
     }
 
     printFullScale() {
