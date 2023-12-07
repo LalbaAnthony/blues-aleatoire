@@ -11,9 +11,15 @@ class Scale {
             [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
         ];
         this.fullAPentatonicScale = this.basicAPentatonicScale.map((s) => [...s, ...s.slice(0, -1)]); // concat scale twice + remove last note cuz strat at fret 0
-        this.allFullPentatonicScale = {
-            // ...
-        }
+        this.scale = [
+            [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+            [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+            [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
+            [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
+            [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
+            [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+        ]
+        // this.scale = this.calculateScale();
     }
 
     getRootNote() {
@@ -64,19 +70,14 @@ class Scale {
 }
 
 class Music {
-    constructor(rootNote, mode) {
+    constructor(scaleObj) {
         this.stringTuning = ['E', 'A', 'D', 'G', 'B', 'e'];
-        this.scaleObj = new Scale(rootNote, mode);
-        this.scale = this.scaleObj.getFullAPentatonicScale();
+        this.scale = scaleObj.scale;
         this.tab = this.returnBlankTab();
     }
 
     getStringTuning() {
         return this.stringTuning;
-    }
-
-    getScaleObj() {
-        return this.scaleObj;
     }
 
     getScale() {
