@@ -1,13 +1,12 @@
 Scales:
 - [X] Rename le projet et chg le git, faire un readme
 - [X] Faire multiplier les scales par deux pour aller plus haut sur le manche jusqua 22 fret
-- [ ] Faire une fonction qui genere des scales
-- [ ] Remplir bibliotheque de scales
-- [ ] Rework comment print les tabs/scales
-- [ ] Rework pour que scale prenne en compte les parametre comme: getScale('A', 'minor', 'pentatonic');
-- [ ] Faire affichage d'une tablature alétoire + de la scale concerné
+- [X] Faire une fonction qui genere des scales
+- [X] Rework pour que scale prenne en compte les parametre comme: getScale('A', 'minor', 'pentatonic');
+- [X] Faire affichage d'une tablature alétoire + de la scale concerné
 - [ ] Refacto l'afichage avec des tableaux
 - [ ] Ajouter la création de patern 
 - [ ] Ajouter les slides, hammer-on, ... 
 - [ ] Prendre en compte d'autres tune (drop D, ...)
+- [ ] Rework comment print les tabs/scales
 - [ ] Faire une section riff et une section solo

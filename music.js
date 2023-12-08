@@ -73,7 +73,6 @@ class Scale {
             const shiftedString = [];
 
             for (let j = 0; j < string.length; j++) {
-                console.log(j, shift, string.length);
                 const newIndex = (j + shift + string.length) % string.length;
                 shiftedString[newIndex] = string[j];
             }
@@ -87,7 +86,7 @@ class Scale {
     printFullScale() {
         document.write("<pre>");
         document.write('0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2<br>');
-        this.fullAPentatonicScale.forEach((line) => {
+        this.scale.forEach((line) => {
             line.forEach((note) => {
                 if (note === 1) {
                     document.write('X ');
