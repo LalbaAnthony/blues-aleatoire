@@ -9,7 +9,6 @@ Scales:
 - [ ] Rajouter de ne pas se baser que sur la derniere note 
 - [ ] Ajouter les slides, hammer-on, ... 
 - [ ] Ajouter la création de patern 
-- [ ] Refacto l'afichage avec des tableaux
-- [ ] Prendre en compte d'autres tune (drop D, ...)
-- [ ] Rework comment print les tabs/scales
+- [ ] Refacto l'afichage avec des tableaux (mais conserver old print)
 - [ ] Faire une section riff et une section solo
+- [ ] Prendre en compte d'autres tune (drop D, ...)
