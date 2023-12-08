@@ -33,7 +33,7 @@ class Scale {
         //     [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
         //     [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
         // ];
-        this.scale = this.shiftScale();
+        this.scale = this.shiftScale(this.fullAPentatonicScale, this.scaleNameToShiftRequirement[this.rootNote]);
     }
 
     getRootNote() {
@@ -68,17 +68,17 @@ class Scale {
 
     shiftScale(originalScale, shift) {
         const newScale = [];
-
         for (let i = 0; i < originalScale.length; i++) {
-            const subArray = originalScale[i];
-            const shiftedSubArray = [];
+            const string = originalScale[i];
+            const shiftedString = [];
 
-            for (let j = 0; j < subArray.length; j++) {
-                const newIndex = (j + shift + subArray.length) % subArray.length;
-                shiftedSubArray[newIndex] = subArray[j];
+            for (let j = 0; j < string.length; j++) {
+                console.log(j, shift, string.length);
+                const newIndex = (j + shift + string.length) % string.length;
+                shiftedString[newIndex] = string[j];
             }
 
-            newScale.push(shiftedSubArray);
+            newScale.push(shiftedString);
         }
 
         return newScale;
