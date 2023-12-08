@@ -2,15 +2,6 @@ class Scale {
     constructor(rootNote = 'C', mode = 'major') {
         this.rootNote = rootNote;
         this.mode = mode;
-        this.basicAPentatonicScale = [
-            [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-            [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-            [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
-            [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
-            [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
-            [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-        ];
-        this.fullAPentatonicScale = this.basicAPentatonicScale.map((s) => [...s, ...s.slice(0, -1)]); // concat scale twice + remove last note cuz strat at fret 0
         this.scaleNameToShiftRequirement = {
             'A': 0,
             'A#': 1,
@@ -25,15 +16,25 @@ class Scale {
             'G': -2,
             'G#': -1,
         };
-        // this.scale = [
-        //     [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-        //     [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-        //     [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
-        //     [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
-        //     [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
-        //     [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
-        // ];
-        this.scale = this.shiftScale(this.fullAPentatonicScale, this.scaleNameToShiftRequirement[this.rootNote]);
+        this.basicAPentatonicMinorScale = [
+            [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+            [0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+            [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
+            [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
+            [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0],
+            [1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0],
+        ];
+        this.basicAPentatonicMajorScale = [
+            [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
+            [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0],
+            [0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1],
+            [0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+            [1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0],
+            [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0],
+        ];
+        this.fullAPentatonicMinorScale = this.basicAPentatonicMinorScale.map((s) => [...s, ...s.slice(0, -1)]);
+        this.fullAPentatonicMajorScale = this.basicAPentatonicMajorScale.map((s) => [...s, ...s.slice(0, -1)]);
+        this.scale = this.shiftScale(mode === 'minor' ? this.fullAPentatonicMinorScale : this.fullAPentatonicMajorScale, this.scaleNameToShiftRequirement[this.rootNote]);
     }
 
     getRootNote() {
@@ -44,12 +45,12 @@ class Scale {
         return this.mode;
     }
 
-    getBasicAPentatonicScale() {
-        return this.basicAPentatonicScale;
+    getBasicAPentatonicMinorScale() {
+        return this.basicAPentatonicMinorScale;
     }
 
-    getFullAPentatonicScale() {
-        return this.fullAPentatonicScale;
+    getFullAPentatonicMinorScale() {
+        return this.fullAPentatonicMinorScale;
     }
 
     getAllFullPentatonicScale() {
