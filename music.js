@@ -85,19 +85,27 @@ class Scale {
     }
 
     printFullScale() {
-        document.write("<pre>");
-        document.write('0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2<br>');
+        // document.write("<pre>");
+        // document.write('0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2<br>');
+        // this.scale.forEach((line) => {
+        //     line.forEach((note) => {
+        //         if (note === 1) {
+        //             document.write('X ');
+        //         } else {
+        //             document.write('- ');
+        //         }
+        //     });
+        //     document.write("<br>");
+        // });
+        // document.write("</pre>");
+        
+        const scaleEl = document.getElementById('scale');
+        scaleEl.innerHTML = '0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2<br>';
         this.scale.forEach((line) => {
-            line.forEach((note) => {
-                if (note === 1) {
-                    document.write('X ');
-                } else {
-                    document.write('- ');
-                }
-            });
-            document.write("<br>");
+            const lineEl = document.createElement('div');
+            lineEl.innerHTML = line.join(' ');
+            scaleEl.appendChild(lineEl);
         });
-        document.write("</pre>");
     }
 }
 
@@ -130,14 +138,13 @@ class Music {
     }
 
     printTab() {
-        document.write("<pre>");
+        const tabEl = document.getElementById('tab');
+        tabEl.innerHTML = '';
         this.tab.forEach((line) => {
-            line.forEach((note) => {
-                document.write(note);
-            });
-            document.write("<br>");
+            const lineEl = document.createElement('div');
+            lineEl.innerHTML = line.join('');
+            tabEl.appendChild(lineEl);
         });
-        document.write("</pre>");
     }
 }
 
