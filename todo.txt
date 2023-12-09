@@ -4,16 +4,18 @@ Scales:
 - [X] Faire une fonction qui genere des scales
 - [X] Rework pour que scale prenne en compte les parametre comme: getScale('A', 'minor', 'pentatonic');
 - [X] Faire affichage d'une tablature alétoire + de la scale concerné
-- [ ] Changer police ecriture
+- [X] Changer police ecriture
+- [X] Faire un interface
+- [ ] Auto sauvegarde de la derniere tablature, et dernieres options selectionné 
+- [ ] Rajouter plus d'options dans l'interface 
+- [ ] Ajouter les slides, hammer-on, ... 
+- [ ] Rajouter de ne pas se baser que sur la derniere note 
 - [ ] Faire Style
-- [ ] Faire un interface
 - [ ] Restreindre nombre de cordes
 - [ ] Favoriser la generation de l'horizontalité + rework la generation
 - [ ] Rajouter les gamme naturelles, ... + les calculers et finir d'implmenter naturelle/penta
-- [ ] Rajouter de ne pas se baser que sur la derniere note 
-- [ ] Ajouter les slides, hammer-on, ... 
-- [ ] Detéction auto si sur mobile, rien s'affiche sauf popup 
-- [ ] Ajouter la création de patern 
+- [ ] Ajouter la création de paternes
 - [ ] Refacto l'afichage avec des tableaux (mais conserver old print)
 - [ ] Faire une section riff et une section solo
 - [ ] Prendre en compte d'autres tune (drop D, ...)
+- [ ] Detéction auto si sur mobile, rien s'affiche sauf popup 
