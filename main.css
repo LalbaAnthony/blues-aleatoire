@@ -70,19 +70,33 @@ header img.logo {
 }
 
 select {
+    font-family: Afacad, sans-serif;
     color: var(--dark);
     background-color: var(--light);
     border: 2px solid var(--primary);
     border-radius: 20px;
     padding: 3px 7px;
+    cursor: pointer;
+}
+
+select option:checked {
+    background-color: var(--primary);
+    color: var(--light);
+}
+
+select option:hover {
+    background-color: var(--secondary);
+    color: var(--light);
 }
 
 button {
+    font-family: Afacad, sans-serif;
     color: var(--light);
     background-color: var(--primary);
     border: 2px solid var(--primary);
     border-radius: 20px;
     padding: 3px 7px;
+    cursor: pointer;
 }
 
 div#scale,

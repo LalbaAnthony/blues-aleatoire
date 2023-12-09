@@ -98,7 +98,7 @@ class Scale {
         //     document.write("<br>");
         // });
         // document.write("</pre>");
-        
+
         const scaleEl = document.getElementById('scale');
         scaleEl.innerHTML = '0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2<br>';
         this.scale.forEach((line) => {
@@ -146,6 +146,10 @@ class Music {
             tabEl.appendChild(lineEl);
         });
     }
+
+    displayTab() {
+        // ...
+    }
 }
 
 class Solo extends Music {
@@ -186,6 +190,10 @@ class Solo extends Music {
             this.tab[posY][noteIndex] = posX;
         }
     }
+}
+
+class Lead extends Music {
+
 }
 
 class Riff extends Music {

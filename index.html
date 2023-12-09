@@ -41,9 +41,10 @@
       </select>
       <select name="whatGenerate" id="whatGenerate">
         <option selected value="riff">Riff</option>
+        <option selected value="lead">Lead</option>
         <option selected value="solo">Solo</option>
       </select>
-      <button id="generate">Generate</button>
+      <button name="generate" id="generate">Generate</button>
     </div>
   </header>
 
@@ -75,8 +76,14 @@
     scale.printFullScale();
 
     const whatGenerate = document.getElementById('whatGenerate').value;
+
     if (whatGenerate === 'riff') {
       const music = new Riff(scale);
+      music.generateTab();
+      music.printTab();
+      return;
+    } else if (whatGenerate === 'lead') {
+      const music = new Lead(scale);
       music.generateTab();
       music.printTab();
       return;
@@ -85,8 +92,9 @@
       music.generateTab();
       music.printTab();
       return;
+    } else {
+      console.log(`Error: ${whatGenerate}.`);
     }
 
-    music.printTab();
   });
 </script>
