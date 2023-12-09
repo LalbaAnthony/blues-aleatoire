@@ -34,7 +34,7 @@ class Scale {
         ];
         this.fullAPentatonicMinorScale = this.basicAPentatonicMinorScale.map((s) => [...s, ...s.slice(0, -1)]);
         this.fullAPentatonicMajorScale = this.basicAPentatonicMajorScale.map((s) => [...s, ...s.slice(0, -1)]);
-        this.scale = this.shiftScale(mode === 'minor' ? this.fullAPentatonicMinorScale : this.fullAPentatonicMajorScale, this.scaleNameToShiftRequirement[this.rootNote]);
+        this.scale = this.shiftScale(mode === 'major' ? this.fullAPentatonicMajorScale : this.fullAPentatonicMinorScale, this.scaleNameToShiftRequirement[this.rootNote]);
     }
 
     getRootNote() {
