@@ -9,6 +9,9 @@
   <meta name="description" content="Site based on an auto JS script to auto generate tabs & riffs">
   <meta name="author" content="Anthony Lalba" />
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Afacad" rel="stylesheet">
   <script type="text/javascript" src="music.js"></script>
   <link rel="stylesheet" href="main.css">
 </head>
@@ -16,11 +19,27 @@
 <body>
 
   <header>
-      <!-- <img class="logo" src="assets/logo-mini.png" alt="Logo RiffRoulette"> -->
-      <h2>RiffRoulette</h2>
+    <h2>RiffRoulette <span class="primary">♬</span></h2>
     <div class="toolbar">
-      <button class="btn" id="btnGenerate">Generate</button>
-      <button class="btn" id="btnPrint">Print</button>
+      <select name="rootNote" id="rootNote">
+        <option selected value="C">C</option>
+        <option value="C#">C#</option>
+        <option value="D">D</option>
+        <option value="D#">D#</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+        <option value="F#">F#</option>
+        <option value="G">G</option>
+        <option value="G#">G#</option>
+        <option value="A">A</option>
+        <option value="A#">A#</option>
+        <option value="B">B</option>
+      </select>
+      <select name="mode" id="mode">
+        <option selected value="major">Major</option>
+        <option value="minor">Minor</option>
+      </select>
+      <button id="generate">Generate</button>
     </div>
   </header>
 
@@ -43,4 +62,15 @@
 
   music.printTab();
 
+  document.getElementById('generate').addEventListener('click', () => {
+    const rootNote = document.getElementById('rootNote').value;
+    const mode = document.getElementById('mode').value;
+    const scale = new Scale(rootNote, mode);
+    scale.printFullScale();
+
+    const music = new Solo(scale);
+    music.generateTab();
+
+    music.printTab();
+  });
 </script>

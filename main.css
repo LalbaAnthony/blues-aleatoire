@@ -37,7 +37,7 @@ ol {
 }
 
 body {
-    font-family: Roboto, sans-serif;
+    font-family: Afacad, sans-serif;
     color: var(--dark);
     background-color: var(--light);
 }
@@ -67,6 +67,22 @@ header img.logo {
 
 .header h2 {
     color: var(--light);
+}
+
+select {
+    color: var(--dark);
+    background-color: var(--light);
+    border: 2px solid var(--primary);
+    border-radius: 20px;
+    padding: 3px 7px;
+}
+
+button {
+    color: var(--light);
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 20px;
+    padding: 3px 7px;
 }
 
 div#scale,

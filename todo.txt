@@ -4,7 +4,10 @@ Scales:
 - [X] Faire une fonction qui genere des scales
 - [X] Rework pour que scale prenne en compte les parametre comme: getScale('A', 'minor', 'pentatonic');
 - [X] Faire affichage d'une tablature alétoire + de la scale concerné
+- [ ] Changer police ecriture
+- [ ] Faire Style
 - [ ] Faire un interface
+- [ ] Restreindre nombre de cordes
 - [ ] Favoriser la generation de l'horizontalité + rework la generation
 - [ ] Rajouter les gamme naturelles, ... + les calculers et finir d'implmenter naturelle/penta
 - [ ] Rajouter de ne pas se baser que sur la derniere note 
