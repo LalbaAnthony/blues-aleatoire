@@ -153,13 +153,16 @@ class Music {
 }
 
 class Solo extends Music {
-    pickANote(posXLast, posYLast, depth = 2) {
+    pickANote(posXLast, posYLast, horizontalDepth = 4, verticalDepth = 2) {
         const possiblesNotes = [];
 
         // Loop through the scale array and fill possiblesNotes array
         for (let i = 0; i < this.scale.length; i++) {
             for (let j = 0; j < this.scale[i].length; j++) {
-                if (this.scale[i][j] === 1 && Math.abs(i - posYLast) <= depth && Math.abs(j - posXLast) <= depth) {
+                if (this.scale[i][j] === 1
+                    && Math.abs(j - posXLast) <= horizontalDepth
+                    && Math.abs(i - posYLast) <= verticalDepth
+                ) {
                     possiblesNotes.push([j, i]);
                 }
             }
