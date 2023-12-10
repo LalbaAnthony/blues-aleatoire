@@ -12,7 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Afacad" rel="stylesheet">
-  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="local-storage.js"></script>
+  <script type="text/javascript" src="riff-roulette.js"></script>
   <link rel="stylesheet" href="main.css">
 </head>
 
@@ -59,42 +60,40 @@
 
 <script>
 
-  const scale = new Scale('C', 'major');
-  scale.printFullScale();
 
-  const music = new Solo(scale);
-  music.generateTab();
-
-  music.printTab();
-
-  document.getElementById('generate').addEventListener('click', () => {
-
+  function run() {
     const rootNote = document.getElementById('rootNote').value;
     const mode = document.getElementById('mode').value;
+    const whatGenerate = document.getElementById('whatGenerate').value;
 
     const scale = new Scale(rootNote, mode);
     scale.printFullScale();
-
-    const whatGenerate = document.getElementById('whatGenerate').value;
 
     if (whatGenerate === 'riff') {
       const music = new Riff(scale);
       music.generateTab();
       music.printTab();
-      return;
     } else if (whatGenerate === 'lead') {
       const music = new Lead(scale);
       music.generateTab();
       music.printTab();
-      return;
     } else if (whatGenerate === 'solo') {
       const music = new Solo(scale);
       music.generateTab();
       music.printTab();
-      return;
     } else {
       console.log(`Error: ${whatGenerate}.`);
     }
 
+    saveInputsToLocal();
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    restoreInputsFromLocal();
+    run();
+  });
+
+  document.getElementById('generate').addEventListener('click', () => {
+    run();
   });
 </script>

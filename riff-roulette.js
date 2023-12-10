@@ -87,7 +87,7 @@ class Scale {
 
     printFullScale() {
         const scaleEl = document.getElementById('scale');
-        scaleEl.textContent = '0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2';
+        scaleEl.innerHTML = ''; // Clear the previous scale
         for (let i = 0; i <= 5; i++) {
             const lineEl = document.createElement('div');
             lineEl.textContent = this.stringTune.slice().reverse()[i] + '|' + this.computedScale[i].map(element => (element === 0 ? '--' : 'X')).join(' ')
