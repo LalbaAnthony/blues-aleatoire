@@ -6,7 +6,7 @@ Scales:
 - [X] Faire affichage d'une tablature alétoire + de la scale concerné
 - [X] Changer police ecriture
 - [X] Faire un interface
-- [ ] Auto sauvegarde de la derniere tablature, et dernieres options selectionné 
+- [X] Auto sauvegarde des dernieres options selectionné 
 - [ ] Rajouter plus d'options dans l'interface 
 - [ ] Ajouter les slides, hammer-on, ... 
 - [ ] Rajouter de ne pas se baser que sur la derniere note 
