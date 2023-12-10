@@ -63,6 +63,10 @@ header {
     color: var(--light);
 }
 
+.toolbar>* {
+    margin: 0 5px;
+}
+
 button,
 select {
     font-family: Afacad, sans-serif;

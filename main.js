@@ -2,6 +2,7 @@ class Scale {
     constructor(rootNote = 'C', mode = 'major') {
         this.rootNote = rootNote;
         this.mode = mode;
+        this.stringTune = ['E', 'A', 'D', 'G', 'B', 'E'];
         this.scaleNameToShiftRequirement = {
             'A': 0,
             'A#': 1,
@@ -34,7 +35,7 @@ class Scale {
         ];
         this.fullAPentatonicMinorScale = this.basicAPentatonicMinorScale.map((s) => [...s, ...s.slice(0, -1)]);
         this.fullAPentatonicMajorScale = this.basicAPentatonicMajorScale.map((s) => [...s, ...s.slice(0, -1)]);
-        this.scale = this.shiftScale(mode === 'major' ? this.fullAPentatonicMajorScale : this.fullAPentatonicMinorScale, this.scaleNameToShiftRequirement[this.rootNote]);
+        this.computedScale = this.shiftScale(mode === 'major' ? this.fullAPentatonicMajorScale : this.fullAPentatonicMinorScale, this.scaleNameToShiftRequirement[this.rootNote]);
     }
 
     getRootNote() {
@@ -57,8 +58,8 @@ class Scale {
         return this.allFullPentatonicScale;
     }
 
-    isNoteInScale(scale, posX, posY) {
-        const noteValue = scale[posY][posX];
+    isNoteInScale(s, posX, posY) {
+        const noteValue = s[posY][posX];
         if (noteValue === 1) return true;
         return false;
     }
@@ -85,43 +86,24 @@ class Scale {
     }
 
     printFullScale() {
-        // document.write("<pre>");
-        // document.write('0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2<br>');
-        // this.scale.forEach((line) => {
-        //     line.forEach((note) => {
-        //         if (note === 1) {
-        //             document.write('X ');
-        //         } else {
-        //             document.write('- ');
-        //         }
-        //     });
-        //     document.write("<br>");
-        // });
-        // document.write("</pre>");
-
         const scaleEl = document.getElementById('scale');
-        scaleEl.innerHTML = '0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2<br>';
-        this.scale.forEach((line) => {
+        scaleEl.textContent = '0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2';
+        for (let i = 0; i <= 5; i++) {
             const lineEl = document.createElement('div');
-            lineEl.innerHTML = line.join(' ');
+            lineEl.textContent = this.stringTune.slice().reverse()[i] + '|' + this.computedScale[i].map(element => (element === 0 ? '--' : 'X')).join(' ')
             scaleEl.appendChild(lineEl);
-        });
+        }
     }
 }
 
 class Music {
-    constructor(scaleObj) {
-        this.stringTuning = ['E', 'A', 'D', 'G', 'B', 'e'];
-        this.scale = scaleObj.scale;
+    constructor(scale) {
+        this.scale = scale;
         this.tab = this.returnBlankTab();
     }
 
-    getStringTuning() {
-        return this.stringTuning;
-    }
-
     getScale() {
-        return this.scale;
+        return this.scale.computedScale;
     }
 
     getTab() {
@@ -130,8 +112,8 @@ class Music {
 
     returnBlankTab(length = 150) {
         const tab = [];
-        for (let i = 0; i < this.stringTuning.length; i++) {
-            const oneStringArray = [this.stringTuning.slice().reverse()[i], '|', ...Array(length).fill('-')];
+        for (let i = 0; i < 6; i++) {
+            const oneStringArray = [this.scale.stringTune.slice().reverse()[i], '|', ...Array(length).fill('-')];
             tab.push(oneStringArray);
         }
         return tab;
@@ -139,10 +121,10 @@ class Music {
 
     printTab() {
         const tabEl = document.getElementById('tab');
-        tabEl.innerHTML = '';
+        tabEl.textContent = '';
         this.tab.forEach((line) => {
             const lineEl = document.createElement('div');
-            lineEl.innerHTML = line.join('');
+            lineEl.textContent = line.join('');
             tabEl.appendChild(lineEl);
         });
     }
@@ -157,9 +139,9 @@ class Solo extends Music {
         const possiblesNotes = [];
 
         // Loop through the scale array and fill possiblesNotes array
-        for (let i = 0; i < this.scale.length; i++) {
-            for (let j = 0; j < this.scale[i].length; j++) {
-                if (this.scale[i][j] === 1
+        for (let i = 0; i < this.scale.computedScale.length; i++) {
+            for (let j = 0; j < this.scale.computedScale[i].length; j++) {
+                if (this.scale.computedScale[i][j] === 1
                     && Math.abs(j - posXLast) <= horizontalDepth
                     && Math.abs(i - posYLast) <= verticalDepth
                 ) {
@@ -178,7 +160,7 @@ class Solo extends Music {
     generateTab() {
         // Generate start note
         let posY = Math.floor(Math.random() * 6);
-        let posX = Math.floor(Math.random() * this.scale[0].length);
+        let posX = Math.floor(Math.random() * this.scale.computedScale[0].length);
 
         // for the length of a string array of the tab array
         for (let noteIndex = 3; noteIndex < this.tab[0].length; noteIndex += 6) {
