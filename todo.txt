@@ -1,4 +1,3 @@
-Scales:
 - [X] Rename le projet et chg le git, faire un readme
 - [X] Faire multiplier les scales par deux pour aller plus haut sur le manche jusqua 22 fret
 - [X] Faire une fonction qui genere des scales
