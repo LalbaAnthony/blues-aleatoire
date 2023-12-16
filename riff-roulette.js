@@ -110,10 +110,10 @@ class Music {
         return this.tab;
     }
 
-    returnBlankTab(length = 150) {
+    returnBlankTab(length = 75) {
         const tab = [];
         for (let i = 0; i < 6; i++) {
-            const oneStringArray = [this.scale.stringTune.slice().reverse()[i], '|', ...Array(length).fill('-')];
+            const oneStringArray = [ ...Array(length).fill('-')];
             tab.push(oneStringArray);
         }
         return tab;
@@ -130,7 +130,18 @@ class Music {
     }
 
     displayTab() {
-        // ...
+        const tabTable = document.getElementById('tab');
+        const tabBody = document.createElement('tbody');
+        this.tab.forEach((line) => {
+            const lineEl = document.createElement('tr');
+            line.forEach((note) => {
+                const noteEl = document.createElement('td');
+                noteEl.textContent = note;
+                lineEl.appendChild(noteEl);
+            });
+            tabBody.appendChild(lineEl);
+        });
+        tabTable.appendChild(tabBody);
     }
 }
 

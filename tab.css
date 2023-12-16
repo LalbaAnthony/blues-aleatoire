@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+table#tab {
+    margin: 1rem;
+    letter-spacing: 3px;
+}
+
+table#tab>tbody>tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: solid 2px var(--primary);
+}
+
+table#tab>tbody>tr::before {
+    padding: 2px;
+    margin: 0.12rem 0.5rem;
+    border: 2px solid var(--secondary);
+    border-radius: 25px;
+    color: var(--dark);
+    background-color: var(--light);
+}
+
+table#tab>tbody>tr:nth-child(1)::before {
+    content: "E";
+}
+
+table#tab>tbody>tr:nth-child(2)::before {
+    content: "B";
+}
+
+table#tab>tbody>tr:nth-child(3)::before {
+    content: "G";
+}
+
+table#tab>tbody>tr:nth-child(4)::before {
+    content: "D";
+}
+
+table#tab>tbody>tr:nth-child(5)::before {
+    content: "A";
+}
+
+table#tab>tbody>tr:nth-child(6)::before {
+    content: "E";
+}
