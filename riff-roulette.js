@@ -110,10 +110,10 @@ class Music {
         return this.tab;
     }
 
-    returnBlankTab(length = 75) {
+    returnBlankTab(length = 150) {
         const tab = [];
         for (let i = 0; i < 6; i++) {
-            const oneStringArray = [ ...Array(length).fill('-')];
+            const oneStringArray = [...Array(length).fill('')];
             tab.push(oneStringArray);
         }
         return tab;
@@ -131,12 +131,18 @@ class Music {
 
     displayTab() {
         const tabTable = document.getElementById('tab');
+        tabTable.innerHTML = '';
         const tabBody = document.createElement('tbody');
         this.tab.forEach((line) => {
             const lineEl = document.createElement('tr');
             line.forEach((note) => {
                 const noteEl = document.createElement('td');
-                noteEl.textContent = note;
+                if (note === '') {
+                    note = '&nbsp;';
+                } else {
+                    noteEl.classList.add('note');
+                }
+                noteEl.innerHTML = note;
                 lineEl.appendChild(noteEl);
             });
             tabBody.appendChild(lineEl);
@@ -146,7 +152,7 @@ class Music {
 }
 
 class Solo extends Music {
-    pickANote(posXLast, posYLast, horizontalDepth = 4, verticalDepth = 2) {
+    pickANote(posXLast, posYLast, horizontalDepth = 4, verticalDepth = 1) {
         const possiblesNotes = [];
 
         // Loop through the scale array and fill possiblesNotes array

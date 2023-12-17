@@ -55,8 +55,7 @@
   </section>
 
   <section>
-    <table id="tab">
-    </table>
+    <table id="tab"></table>
   </section>
 
 </body>
@@ -64,8 +63,6 @@
 </html>
 
 <script>
-
-
   function run() {
     const rootNote = document.getElementById('rootNote').value;
     const mode = document.getElementById('mode').value;
@@ -85,8 +82,6 @@
       const music = new Solo(scale);
       music.generateTab();
       music.displayTab();
-    } else {
-      console.log(`Error: ${whatGenerate}.`);
     }
 
     saveInputsToLocal();

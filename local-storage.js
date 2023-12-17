@@ -7,7 +7,6 @@ function restoreInputsFromLocal() {
 
     const whatGenerate = localStorage.getItem('whatGenerate') || 'solo';
     document.getElementById('whatGenerate').value = whatGenerate;
-
 }
 
 function saveInputsToLocal() {

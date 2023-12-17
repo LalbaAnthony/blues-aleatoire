@@ -6,6 +6,8 @@
 - [X] Changer police ecriture
 - [X] Faire un interface
 - [X] Auto sauvegarde des dernieres options selectionné 
+- [ ] Palcer les cordes en CSS 
+- [ ] Rajouter les notes 'X' 
 - [ ] Rajouter plus d'options dans l'interface 
 - [ ] Ajouter les slides, hammer-on, ... 
 - [ ] Rajouter de ne pas se baser que sur la derniere note 
