@@ -1,4 +1,4 @@
-# RiffRoulette
+# riff-roulette
 
 -----
 
